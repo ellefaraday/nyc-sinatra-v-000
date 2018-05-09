@@ -60,6 +60,8 @@ class FiguresController < ApplicationController
       @landmark = Landmark.create(params[:landmark])
       @figure.landmarks << @landmark
     end
+    #reset titles
+    @figure.titles.clear
     #assign existing titles
     if params[:figure][:title_ids] != nil
       params[:figure][:title_ids].each {|title| @figure.titles << Title.find_by_id(title)}
