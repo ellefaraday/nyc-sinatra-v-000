@@ -49,6 +49,8 @@ class FiguresController < ApplicationController
   post '/figures/:id' do
     #get figure
     @figure= Figure.find_by_id(params[:id])
+    #reset landmarks
+    @figure.landmarks.clear
     #assign existing landmarks to figure
     if params[:figure][:landmark_ids] != nil
       params[:figure][:landmark_ids].each {|landmark| @figure.landmarks << Landmark.find_by_id(landmark)}
